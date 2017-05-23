@@ -93,16 +93,8 @@ namespace ProManService.Engines
 
                             using (var ms = new MemoryStream())
                             {
-                                try
-                                {
-                                    var svnUri = new SvnUriTarget(fileUrl, svnLogEventArg.Revision);
-                                    svnClient.Write(svnUri, ms);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Helper.InsertErrorLog(fileUrl, ex.Message);
-                                    continue;
-                                }
+                                var svnUri = new SvnUriTarget(fileUrl, svnLogEventArg.Revision);
+                                svnClient.Write(svnUri, ms);
 
                                 var str = Encoding.Default.GetString(ms.ToArray());
                                 bytesOfCode = GetCodeBytes(str, filetype.RemovesRegExp);
@@ -117,16 +109,8 @@ namespace ProManService.Engines
 
                                     using (var ms2 = new MemoryStream())
                                     {
-                                        try
-                                        {
-                                            var svnUri2 = new SvnUriTarget(fileUrl, svnLogEventArg.Revision - 1);
-                                            svnClient.Write(svnUri2, ms2);
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            Helper.InsertErrorLog(fileUrl, ex.Message);
-                                            continue;
-                                        }
+                                        var svnUri2 = new SvnUriTarget(fileUrl, svnLogEventArg.Revision - 1);
+                                        svnClient.Write(svnUri2, ms2);
 
                                         var str2 = Encoding.Default.GetString(ms2.ToArray());
                                         var pbocs = GetCodeBytes(str2, filetype.RemovesRegExp);

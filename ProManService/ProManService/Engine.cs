@@ -1,19 +1,6 @@
-﻿using Microsoft.TeamFoundation.Client;
-using Microsoft.TeamFoundation.VersionControl.Client;
-using ProManService.tfs;
-using SharpSvn;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Security.Principal;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using ProManService.Data;
+using ProManService.Engines;
+
 
 
 namespace ProManService
@@ -34,9 +21,15 @@ namespace ProManService
 
         public static void Start()
         {
-            //WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
-            //var username = currentIdentity.Name;
-            
+            var svn = new SVN(
+                          new EfData()
+                      );
+            svn.Update();
+
+            var tfs = new TFS(
+                          new EfData()
+                      );
+            tfs.Update();
         }
         
     }

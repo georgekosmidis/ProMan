@@ -1,7 +1,7 @@
 ﻿using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
+using ProManService.Engines.TfsLibs;
 using ProManService.Interfaces;
-using ProManService.tfs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +22,7 @@ namespace ProManService.Engines
             _data = data;
         }
 
-        public void Get()
+        public void Update()
         {
 
             //Get SVN respository credentials
@@ -102,7 +102,7 @@ namespace ProManService.Engines
 
                         //get filetype
                         var ext = Path.GetExtension(w.Item.ServerItem);
-                        var fileType = fileTypes.Where(o => o.Type == ext).FirstOrDefault();
+                        var fileType = _data.GetFileTypes().Where(o => o.Type == ext).FirstOrDefault();
                         if (fileType == null)
                             continue;
 

@@ -119,20 +119,9 @@ namespace ProManService.Data
 
 
                 ctx.BOCs.Add(boc);
-                try
-                {
-                    ctx.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    var message = "";
-                    while (ex != null)
-                    {
-                        message = ex.Message + Environment.NewLine;
-                        ex = ex.InnerException;
-                    }
-                    Helper.InsertErrorLog("InsertBOC(...)", message);
-                }
+
+                ctx.SaveChanges();
+
             }
         }
     }

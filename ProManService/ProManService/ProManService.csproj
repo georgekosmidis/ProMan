@@ -154,7 +154,7 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="tfs\ConnectByImplementingCredentialsProvider.cs" />
+    <Compile Include="Engines\TfsLibs\ConnectByImplementingCredentialsProvider.cs" />
     <Compile Include="User.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
