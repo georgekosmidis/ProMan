@@ -97,10 +97,15 @@
     <Compile Include="BOC.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\EfData.cs" />
+    <Compile Include="Engines\EngineBase.cs" />
+    <Compile Include="Interfaces\IData.cs" />
     <Compile Include="Developer.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Engine.cs" />
+    <Compile Include="Engines\SVN.cs" />
+    <Compile Include="Engines\TFS.cs" />
     <Compile Include="ErrorLog.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
@@ -110,7 +115,6 @@
     <Compile Include="FileType.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
     <Compile Include="Libs.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
