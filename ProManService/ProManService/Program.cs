@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProManService.Factories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -16,13 +17,16 @@ namespace ProManService
         [STAThread]
         static void Main()
         {
-
+#if DEBUG
+            new EngineFactory().Get().Start();
+#else
             ServiceBase[] servicesToRun = new ServiceBase[]
             {
                 new Service1()
             };
 
             ServiceBase.Run(servicesToRun);
+#endif
         }
     }
 }

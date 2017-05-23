@@ -242,14 +242,6 @@ ModelManifest.xml
 .fake/
 
 
-# ESS
-/eStudio/Docs/ExpensesAttachements/*.*
-/eDbs/DBeStudio.cs
-/eStudio/service/config/*.config
-/eStudio/web.config
-/estudio/Temp/*.*
-/_Deploy
-
 # Exclude export files
 *.tmp
 
@@ -267,3 +259,7 @@ ModelManifest.xml
 
 # Visio autosave temporary files
 *.~vsd*
+
+
+# Configs
+/ProManService/ProManService/

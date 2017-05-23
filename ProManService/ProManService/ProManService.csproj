@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="Data\EfData.cs" />
     <Compile Include="Engines\EngineBase.cs" />
+    <Compile Include="Factories\EngineFactory.cs" />
     <Compile Include="Interfaces\IData.cs" />
     <Compile Include="Developer.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
