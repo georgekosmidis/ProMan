@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - ProMan</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    @Styles.Render( "~/Content/kendo/css" )
+    @Styles.Render( "~/Content/css" )
+    @Scripts.Render( "~/bundles/modernizr" )
+
+    @Scripts.Render( "~/bundles/jquery" )
+    @Scripts.Render( "~/bundles/jqueryui" )
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        var _widget = {}; // my object
+        var _widgets = []; // my array
+
+        function RegisterNewWidget(id, type) {
+            _widget = {
+                _id: id,
+                _type: type
+            }
+            _widgets.push(_widget);
+        }
+    </script>
+</head>
+
+<body class="skin-black fixed">
+    <!-- LEFT - TOP NAVBAR -->
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            @{Html.RenderAction( "GetLeftMenu", "Helper" );}
+        </aside>
+        <aside class="right-side">
+            @RenderBody()
+        </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+    @Scripts.Render( "~/bundles/kendo" )
+    @Scripts.Render( "~/bundles/SiteScripts" )
+
+    @RenderSection( "scripts", required: false )
+
+
+    <script>
+        $('#daterange-btn').daterangepicker({
+            ranges: {
+                'Last 7 Days': [moment().subtract('days', 6), moment()],
+                'Last 30 Days': [moment().subtract('days', 29), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Previous Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            startDate: moment().subtract('days', '@ProManClient.Helpers.GlobalVariables.InitialDaysBefore'),
+            endDate: moment()
+        },
+        function (start, end) {
+            var parameters = { startDate: start._d.toUTCString(), endDate: end._d.toUTCString() };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action( "SetDates", "Helper" )',
+                data: JSON.stringify(parameters),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+
+                    $.each(_widgets, function (i, o) {
+                        $("#" + o._id).data(o._type).dataSource.read();
+                    });
+                    var period = start.format('D MMM YYYY') + " - " + end.format('D MMM YYYY');
+                    if (start.format('D MMM YYYY') === end.format('D MMM YYYY')) {
+                        period = start.format('D MMM YYYY');
+                    }
+                    $("#daterange-btn span").html(period);
+                }
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

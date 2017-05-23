@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<!-- Content Header (Page header) -->
+@Html.Partial( "../Shared/LayoutPartials/TopMenu", new ViewDataDictionary { { "Title", "Dashboard" }, { "icon", "dashboard" } })
+<!-- Main content -->
+<section class="content">
+    @*{Html.RenderAction( "GetTotalNumbers", "Home" );}*@
+    @Html.Partial( "../Shared/Widgets/TotalNumbers", new ViewDataDictionary { { "action", "GetTotalNumbers" }, { "controller", "Home" } } )
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">Development time</h3>
+                </div>
+                <div class="box-body">
+                    <!--BOC Per Time Chart-->
+                    @Html.Partial( "../Shared/Widgets/BOCPerTimeChart", new ViewDataDictionary { { "action", "GetBOCPerTime" }, { "controller", "Home" } } )
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <section class="col-lg-4 col-md-6">
+            <!--Projects List-->
+            @Html.Partial( "../Shared/Widgets/ProjectsList", new ViewDataDictionary { { "action", "GetProjectsList" }, { "controller", "Home" } } )
+        </section>
+        <section class="col-lg-4 col-md-6">
+            <!--Developers List-->
+            @Html.Partial( "../Shared/Widgets/DevelopersList", new ViewDataDictionary { { "action", "GetDevelopersList" }, { "controller", "Home" } } )
+        </section>
+        <section class="col-lg-4 col-md-6">
+            <!--Modifications PieChart-->
+            @Html.Partial( "../Shared/Widgets/TypesChart", new ViewDataDictionary { { "action", "GetModificationList" }, { "controller", "Home" } } )
+        </section>
+    </div><!-- /.row (main row) -->
+</section>

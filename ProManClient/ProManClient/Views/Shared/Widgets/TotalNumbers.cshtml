@@ -1,0 +1,41 @@
+﻿@using ProManClient.ViewModels;
+
+@{
+    string action = (ViewData["action"]).ToString();
+    string controller = (ViewData["controller"]).ToString();
+}
+
+
+<!-- Small boxes (Stat box) -->
+@(Html.Kendo().ListView<TotalNumbersViewModel>()
+        .Name( "NumbersList" )
+        .TagName( "div" ).HtmlAttributes( new { @class = "row" } )
+        .ClientTemplateId( "template_TotalNumbersList" )
+        .DataSource( dataSource => {
+            dataSource.Read( read => read.Action( action, controller ) );
+            //dataSource.Events( e => e.RequestStart( "loaderActivate('debtors')" ) );
+        } )
+        //.Events( e => e.DataBound( "projectsList_ondatabound('projects_scrollBar')" ) )
+)
+
+<script type="text/x-kendo-tmpl" id="template_TotalNumbersList">
+    <div class='col-lg-3 col-xs-6'>
+        <div class='small-box #: BgColor #'>
+            <div class='inner'>
+                <h3>
+                    #: Value #
+                </h3>
+                <p>
+                    #= Name #
+                </p>
+            </div>
+            <div class='icon'>
+                <i class='ion #: Icon #'></i>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    RegisterNewWidget("NumbersList", "kendoListView");
+</script>

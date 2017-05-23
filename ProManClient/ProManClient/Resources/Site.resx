@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblAllUsers" xml:space="preserve">
+    <value>All users</value>
+  </data>
+  <data name="lblAMinuteAgo" xml:space="preserve">
+    <value>A minute ago</value>
+  </data>
+  <data name="lblAnHourAgo" xml:space="preserve">
+    <value>An hour ago</value>
+  </data>
+  <data name="lblCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblConfirmDiscardChanges" xml:space="preserve">
+    <value>Confirm discard changes</value>
+  </data>
+  <data name="lblCountry_bulgaria" xml:space="preserve">
+    <value>Bulgaria</value>
+  </data>
+  <data name="lblCountry_germany" xml:space="preserve">
+    <value>Germany</value>
+  </data>
+  <data name="lblCountry_greece" xml:space="preserve">
+    <value>Greece</value>
+  </data>
+  <data name="lblCountry_italy" xml:space="preserve">
+    <value>Italy</value>
+  </data>
+  <data name="lblCountry_sweden" xml:space="preserve">
+    <value>Sweden</value>
+  </data>
+  <data name="lblDataUpdates" xml:space="preserve">
+    <value>Data Updates</value>
+  </data>
+  <data name="lblDaysAgo" xml:space="preserve">
+    <value>days ago</value>
+  </data>
+  <data name="lblDiscardChanges" xml:space="preserve">
+    <value>Discard changes</value>
+  </data>
+  <data name="lblDiscardChangesQuestion" xml:space="preserve">
+    <value>Discard changes?</value>
+  </data>
+  <data name="lble916SendConfEmail" xml:space="preserve">
+    <value>Send Confirmation Email</value>
+  </data>
+  <data name="lblEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblEmailRequired" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="lblEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="lblEnglishShort" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="lblError404" xml:space="preserve">
+    <value>This Page Doesn't Exist!</value>
+  </data>
+  <data name="lblError404Description" xml:space="preserve">
+    <value>For some reason the page you are looking for doesn't exist! It may have been removed from the website or you may have mistyped the url. Anyway, no harm done.</value>
+  </data>
+  <data name="lblError500" xml:space="preserve">
+    <value>Unexpected Error</value>
+  </data>
+  <data name="lblError500Description" xml:space="preserve">
+    <value>Something went wrong that it wasn't supposed to!</value>
+  </data>
+  <data name="lblError901" xml:space="preserve">
+    <value>Confirmation code is not valid or has expired! </value>
+  </data>
+  <data name="lblError901Description" xml:space="preserve">
+    <value>Confirmation code is not valid or has expired!</value>
+  </data>
+  <data name="lblError902" xml:space="preserve">
+    <value>Invalid username or password!</value>
+  </data>
+  <data name="lblError902Description" xml:space="preserve">
+    <value>Invalid username or password!</value>
+  </data>
+  <data name="lblError903" xml:space="preserve">
+    <value>Not allowed guest user!</value>
+  </data>
+  <data name="lblError903Description" xml:space="preserve">
+    <value>Not allowed guest user!</value>
+  </data>
+  <data name="lblError904" xml:space="preserve">
+    <value>Guest user is required!</value>
+  </data>
+  <data name="lblError904Description" xml:space="preserve">
+    <value>Guest user is required!</value>
+  </data>
+  <data name="lblError905" xml:space="preserve">
+    <value>Invalid PIN for verification!</value>
+  </data>
+  <data name="lblError905Description" xml:space="preserve">
+    <value>Invalid PIN for verification!</value>
+  </data>
+  <data name="lblError906" xml:space="preserve">
+    <value>Verification period expired!</value>
+  </data>
+  <data name="lblError906Description" xml:space="preserve">
+    <value>Verification period expired!</value>
+  </data>
+  <data name="lblError907" xml:space="preserve">
+    <value>The Password reminder key has expired!</value>
+  </data>
+  <data name="lblError907Description" xml:space="preserve">
+    <value>This is the Description of the error 907</value>
+  </data>
+  <data name="lblError908" xml:space="preserve">
+    <value>The user/email is already registered!</value>
+  </data>
+  <data name="lblError908Description" xml:space="preserve">
+    <value>The user/email is already registered!</value>
+  </data>
+  <data name="lblError916" xml:space="preserve">
+    <value>Confirmation Error</value>
+  </data>
+  <data name="lblError916Description" xml:space="preserve">
+    <value>The user is not confirmed</value>
+  </data>
+  <data name="lblError916submitted" xml:space="preserve">
+    <value>A confirmation mail has been submitted to</value>
+  </data>
+  <data name="lblError919" xml:space="preserve">
+    <value>Password Change Failed</value>
+  </data>
+  <data name="lblError919Description" xml:space="preserve">
+    <value>Password Change Failed</value>
+  </data>
+  <data name="lblError9xx" xml:space="preserve">
+    <value>Error 9xx</value>
+  </data>
+  <data name="lblError9xxDescription" xml:space="preserve">
+    <value>Error 9xx</value>
+  </data>
+  <data name="lblFirstname" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="lblFirstnameRequired" xml:space="preserve">
+    <value>Firstname is required</value>
+  </data>
+  <data name="lblGreek" xml:space="preserve">
+    <value>Ελληνικά</value>
+  </data>
+  <data name="lblGreekShort" xml:space="preserve">
+    <value>ΕΛ</value>
+  </data>
+  <data name="lblHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="lblHoursAgo" xml:space="preserve">
+    <value>hours ago</value>
+  </data>
+  <data name="lblHoursBefore" xml:space="preserve">
+    <value>hours before.</value>
+  </data>
+  <data name="lblInvalidEmailFormat" xml:space="preserve">
+    <value>The email format is not valid</value>
+  </data>
+  <data name="lblJustNow" xml:space="preserve">
+    <value>Just now</value>
+  </data>
+  <data name="lblLastMonth" xml:space="preserve">
+    <value>Last month</value>
+  </data>
+  <data name="lblLastname" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="lblLastnameRequired" xml:space="preserve">
+    <value>Lastname is required</value>
+  </data>
+  <data name="lblLastWeek" xml:space="preserve">
+    <value>Last week</value>
+  </data>
+  <data name="lblLastYear" xml:space="preserve">
+    <value>Last year</value>
+  </data>
+  <data name="lblLoginError" xml:space="preserve">
+    <value>The user name or password provided is incorrect.</value>
+  </data>
+  <data name="lblMenu_account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="lblMenu_conflictnotifications" xml:space="preserve">
+    <value>Conflict Notifications</value>
+  </data>
+  <data name="lblMenu_contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="lblMenu_creditors" xml:space="preserve">
+    <value>Creditors</value>
+  </data>
+  <data name="lblMenu_customers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="lblMenu_dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="lblMenu_dashboardperusertrader" xml:space="preserve">
+    <value>Users Transactions</value>
+  </data>
+  <data name="lblMenu_debtors" xml:space="preserve">
+    <value>Debtors</value>
+  </data>
+  <data name="lblMenu_form" xml:space="preserve">
+    <value>Form</value>
+  </data>
+  <data name="lblMenu_monthview" xml:space="preserve">
+    <value>Month View</value>
+  </data>
+  <data name="lblMenu_my_company" xml:space="preserve">
+    <value>My Company</value>
+  </data>
+  <data name="lblMenu_notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="lblMenu_oblg_month_view" xml:space="preserve">
+    <value>Month View</value>
+  </data>
+  <data name="lblMenu_oblg_week_view" xml:space="preserve">
+    <value>Week View</value>
+  </data>
+  <data name="lblMenu_obligations" xml:space="preserve">
+    <value>Calendars</value>
+  </data>
+  <data name="lblMenu_overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="lblMenu_payments" xml:space="preserve">
+    <value>Payments</value>
+  </data>
+  <data name="lblMenu_peruser" xml:space="preserve">
+    <value>Per User</value>
+  </data>
+  <data name="lblMenu_purchases" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
+  <data name="lblMenu_receipts" xml:space="preserve">
+    <value>Receipts</value>
+  </data>
+  <data name="lblMenu_reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="lblMenu_sales" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="lblMenu_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="lblMenu_sign_out" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="lblMenu_suppliers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="lblMenu_traders" xml:space="preserve">
+    <value>Traders</value>
+  </data>
+  <data name="lblMenu_transactions" xml:space="preserve">
+    <value>Transactions</value>
+  </data>
+  <data name="lblMenu_useraccount" xml:space="preserve">
+    <value>User Αccount</value>
+  </data>
+  <data name="lblMenu_verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="lblMenu_weekview" xml:space="preserve">
+    <value>Week View</value>
+  </data>
+  <data name="lblMinutesAgo" xml:space="preserve">
+    <value>minutes ago</value>
+  </data>
+  <data name="lblMinutesBefore" xml:space="preserve">
+    <value>minutes before.</value>
+  </data>
+  <data name="lblMonthsAgo" xml:space="preserve">
+    <value>months ago</value>
+  </data>
+  <data name="lblNow" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="lblOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lblPasswordRequired" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="lblPleaseUploadImageType" xml:space="preserve">
+    <value>Please upload image file of type jpg | jpeg | png | gif</value>
+  </data>
+  <data name="lblReturnHome" xml:space="preserve">
+    <value>Return to Home Page</value>
+  </data>
+  <data name="lblSaveChanges" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="lblSecondsAgo" xml:space="preserve">
+    <value>seconds ago</value>
+  </data>
+  <data name="lblSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="lblSomethingWentWrong" xml:space="preserve">
+    <value>Something went wrong! Please try again.</value>
+  </data>
+  <data name="lblUserOptions" xml:space="preserve">
+    <value>User Options</value>
+  </data>
+  <data name="lblVATError" xml:space="preserve">
+    <value>Wrong VAT</value>
+  </data>
+  <data name="lblVATNumber" xml:space="preserve">
+    <value>VAT</value>
+  </data>
+  <data name="lblWeeksAgo" xml:space="preserve">
+    <value>weeks ago</value>
+  </data>
+  <data name="lblYearsAgo" xml:space="preserve">
+    <value>years ago</value>
+  </data>
+  <data name="lblYourChangesHaveNotBeenSaved" xml:space="preserve">
+    <value>Your changes have not been saved.</value>
+  </data>
+  <data name="lbl_current_month" xml:space="preserve">
+    <value>Current Month</value>
+  </data>
+  <data name="lbl_current_week" xml:space="preserve">
+    <value>Current Week</value>
+  </data>
+  <data name="lbl_last_month" xml:space="preserve">
+    <value>Previous Month</value>
+  </data>
+  <data name="lbl_last_week" xml:space="preserve">
+    <value>Previous Week</value>
+  </data>
+  <data name="lbl_month" xml:space="preserve">
+    <value>Current Month</value>
+  </data>
+  <data name="lbl_month1" xml:space="preserve">
+    <value>Jan.</value>
+  </data>
+  <data name="lbl_month10" xml:space="preserve">
+    <value>Oct.</value>
+  </data>
+  <data name="lbl_month11" xml:space="preserve">
+    <value>Nov.</value>
+  </data>
+  <data name="lbl_month12" xml:space="preserve">
+    <value>Dec.</value>
+  </data>
+  <data name="lbl_month2" xml:space="preserve">
+    <value>Feb.</value>
+  </data>
+  <data name="lbl_month3" xml:space="preserve">
+    <value>Mar.</value>
+  </data>
+  <data name="lbl_month4" xml:space="preserve">
+    <value>Apr.</value>
+  </data>
+  <data name="lbl_month5" xml:space="preserve">
+    <value>May.</value>
+  </data>
+  <data name="lbl_month6" xml:space="preserve">
+    <value>Jun.</value>
+  </data>
+  <data name="lbl_month7" xml:space="preserve">
+    <value>Jul.</value>
+  </data>
+  <data name="lbl_month8" xml:space="preserve">
+    <value>Aug.</value>
+  </data>
+  <data name="lbl_month9" xml:space="preserve">
+    <value>Sep.</value>
+  </data>
+  <data name="lbl_previous_month" xml:space="preserve">
+    <value>Previous Month</value>
+  </data>
+  <data name="lbl_previous_week" xml:space="preserve">
+    <value>Previous Week</value>
+  </data>
+  <data name="lbl_today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="lbl_total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="lbl_week" xml:space="preserve">
+    <value>Current Week</value>
+  </data>
+  <data name="lbl_yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="lblUserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="lblUserNameRequired" xml:space="preserve">
+    <value>Username is required</value>
+  </data>
+  <data name="lbl_add" xml:space="preserve">
+    <value>Αdditions</value>
+  </data>
+  <data name="lbl_del" xml:space="preserve">
+    <value>Deletions</value>
+  </data>
+  <data name="lbl_mod" xml:space="preserve">
+    <value>Modifications</value>
+  </data>
+  <data name="lblCommitedFiles" xml:space="preserve">
+    <value>Commited Files</value>
+  </data>
+  <data name="lblSearchForDevelopers" xml:space="preserve">
+    <value>Search for a developer</value>
+  </data>
+  <data name="lblSearchForProject" xml:space="preserve">
+    <value>Search for a project</value>
+  </data>
+  <data name="lblSelectADevelopers" xml:space="preserve">
+    <value>Select a developer</value>
+  </data>
+  <data name="lblSelectAProject" xml:space="preserve">
+    <value>Select a  project</value>
+  </data>
+  <data name="lblSearchForADeveloperProject" xml:space="preserve">
+    <value>Search  for a Developer or Project...</value>
+  </data>
+</root>

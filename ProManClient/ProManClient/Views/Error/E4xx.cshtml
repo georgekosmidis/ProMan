@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_ErrorLayout.cshtml";
+    ViewBag.Title = "Error 400";
+    ViewBag.CustomBodyClass = "error-page";
+}
+
+
+<h2 class="error">
+    <span class="fa-stack fa-lg header-icon">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-chain-broken fa-stack-1x fa-inverse"></i>
+    </span>
+    Ζητούμε συγνώμη αλλά η σελίδα που ψάχνεις δεν είναι διαθέσιμη!
+</h2>
+
+<p>Εν τω μεταξύ, δοκιμάστε να επιστρέψετε στη σελίδα που βρισκόσασταν.</p>
+<br />
+<p><a href="@Url.Action("Index", "Home")" class="cs-btn cs-btn--primary">EΠΙΣΤΡΟΦΗ ΣΤΗΝ ΚΕΝΤΡΙΚΗ</a></p>

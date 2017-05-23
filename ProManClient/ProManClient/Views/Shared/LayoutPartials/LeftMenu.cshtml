@@ -1,0 +1,68 @@
+﻿@using ProManClient.ViewModels;
+
+@model IEnumerable<MenuViewModel>
+
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+    <!----user panel --------->
+    <div class="user-panel">
+        <span class="pull-left fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+        </span>
+        <div class="pull-left info">
+            <span>Welcome,</span>
+            <strong>@User.Identity.Name</strong>
+        </div>
+    </div>
+
+    <!-- search form -->
+    @*<form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>*@
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+        @{
+            if ( (Model != null) && (Model.Count() != 0) ) {
+                foreach ( var m in Model ) {
+                    if ( m.HasChildren == false && m.Children == null ) {
+                        <li class="@m.Active">
+                            <a href="@Url.Action( m.Action, m.Controller )">
+                                <i class="@m.Icon"></i> <span>@m.Title</span>
+                            </a>
+                        </li>
+                    }
+                    else {
+                        <li class="treeview @m.Active">
+                            <a href="#">
+                                <i class="@m.Icon"></i>
+                                <span>@m.Title</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                @foreach ( var item in m.Children ) {
+                                    <li class="@item.Active">
+                                        @if ( item.Allowed == true ) {
+                                            <a href="@Url.Action( "Index", item.Controller, new { id = item.ID } ) "><i class=" fa fa-angle-double-right" data-id="@item.ID"></i> @item.Title</a>
+                                        }
+                                        else {
+                                            <a href="#" class="disabled"><i class=" fa fa-ban"></i> @item.Title</a>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+            }
+        }
+    </ul>
+
+</section>
+<!-- /.sidebar -->

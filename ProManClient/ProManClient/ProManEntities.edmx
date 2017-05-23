@@ -1,0 +1,869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProManModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ProjectRepositoryID" Type="int" />
+          <Property Name="DeveloperID" Type="int" Nullable="false" />
+          <Property Name="FileTypeID" Type="int" />
+          <Property Name="FileID" Type="int" Nullable="false" />
+          <Property Name="Bytes" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="RevisionNumber" Type="bigint" Nullable="false" />
+          <Property Name="DT" Type="datetime" Nullable="false" />
+          <Property Name="Change_OFF" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Developers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="SvnUser" Type="varchar" MaxLength="255" />
+          <Property Name="SvnUser2" Type="varchar" MaxLength="50" />
+          <Property Name="TfsUser" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileURL" Type="varchar(max)" Nullable="false" />
+          <Property Name="ErrorMessage" Type="varchar(max)" Nullable="false" />
+          <Property Name="dt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Filename" Type="varchar" MaxLength="900" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RemovesRegExp" Type="varchar(max)" Nullable="false" />
+          <Property Name="BPL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectDevelopers_OFF">
+          <Key>
+            <PropertyRef Name="DeveloperID" />
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="DeveloperID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectFileTypes_OFF">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="FileTypeID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="FileTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectHistory_OFF">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectRepositoryID" Type="int" Nullable="false" />
+          <Property Name="DeveloperID" Type="int" Nullable="false" />
+          <Property Name="Bytes" Type="bigint" Nullable="false" />
+          <Property Name="LastDT" Type="datetime" Nullable="false" />
+          <Property Name="LastRevision" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectRepositories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="RepositoryID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BasePath_OFF" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastRevision_OFF" Type="bigint" Nullable="false" />
+          <Property Name="ExcludeRegExp_OFF" Type="varchar(max)" Nullable="false" />
+          <Property Name="CocomoMode" Type="tinyint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RepositoryID_OFF" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descr" Type="varchar(max)" Nullable="false" />
+          <Property Name="ExcludeRegExp" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Repositories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BaseUrl" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RootUsername" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RootPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SourceUrl" Type="varchar" MaxLength="255" />
+          <Property Name="LastRevision" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserLevel" Type="tinyint" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BOC_Files">
+          <End Role="Files" Type="Self.Files" Multiplicity="1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOC_ProjectRepositories">
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="0..1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectRepositories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="ProjectRepositoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lines_Developers">
+          <End Role="Developers" Type="Self.Developers" Multiplicity="1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lines_FileTypes">
+          <End Role="FileTypes" Type="Self.FileTypes" Multiplicity="0..1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lines_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDevelopers_Developers">
+          <End Role="Developers" Type="Self.Developers" Multiplicity="1" />
+          <End Role="ProjectDevelopers_OFF" Type="Self.ProjectDevelopers_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectDevelopers_OFF">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDevelopers_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectDevelopers_OFF" Type="Self.ProjectDevelopers_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectDevelopers_OFF">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFileTypes_FileTypes">
+          <End Role="FileTypes" Type="Self.FileTypes" Multiplicity="1" />
+          <End Role="ProjectFileTypes_OFF" Type="Self.ProjectFileTypes_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectFileTypes_OFF">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFileTypes_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectFileTypes_OFF" Type="Self.ProjectFileTypes_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectFileTypes_OFF">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectHistory_Developers">
+          <End Role="Developers" Type="Self.Developers" Multiplicity="1" />
+          <End Role="ProjectHistory_OFF" Type="Self.ProjectHistory_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectHistory_OFF">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectHistory_ProjectRepositories">
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="1" />
+          <End Role="ProjectHistory_OFF" Type="Self.ProjectHistory_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectRepositories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectHistory_OFF">
+              <PropertyRef Name="ProjectRepositoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRepositories_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectRepositories">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRepositories_Repositories">
+          <End Role="Repositories" Type="Self.Repositories" Multiplicity="0..1" />
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repositories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectRepositories">
+              <PropertyRef Name="RepositoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProManModelStoreContainer">
+          <EntitySet Name="BOC" EntityType="Self.BOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Developers" EntityType="Self.Developers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileTypes" EntityType="Self.FileTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectDevelopers_OFF" EntityType="Self.ProjectDevelopers_OFF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectFileTypes_OFF" EntityType="Self.ProjectFileTypes_OFF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectHistory_OFF" EntityType="Self.ProjectHistory_OFF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectRepositories" EntityType="Self.ProjectRepositories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repositories" EntityType="Self.Repositories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BOC_Files" Association="Self.FK_BOC_Files">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOC_ProjectRepositories" Association="Self.FK_BOC_ProjectRepositories">
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lines_Developers" Association="Self.FK_Lines_Developers">
+            <End Role="Developers" EntitySet="Developers" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lines_FileTypes" Association="Self.FK_Lines_FileTypes">
+            <End Role="FileTypes" EntitySet="FileTypes" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lines_Projects" Association="Self.FK_Lines_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDevelopers_Developers" Association="Self.FK_ProjectDevelopers_Developers">
+            <End Role="Developers" EntitySet="Developers" />
+            <End Role="ProjectDevelopers_OFF" EntitySet="ProjectDevelopers_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDevelopers_Projects" Association="Self.FK_ProjectDevelopers_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectDevelopers_OFF" EntitySet="ProjectDevelopers_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFileTypes_FileTypes" Association="Self.FK_ProjectFileTypes_FileTypes">
+            <End Role="FileTypes" EntitySet="FileTypes" />
+            <End Role="ProjectFileTypes_OFF" EntitySet="ProjectFileTypes_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFileTypes_Projects" Association="Self.FK_ProjectFileTypes_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectFileTypes_OFF" EntitySet="ProjectFileTypes_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectHistory_Developers" Association="Self.FK_ProjectHistory_Developers">
+            <End Role="Developers" EntitySet="Developers" />
+            <End Role="ProjectHistory_OFF" EntitySet="ProjectHistory_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectHistory_ProjectRepositories" Association="Self.FK_ProjectHistory_ProjectRepositories">
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+            <End Role="ProjectHistory_OFF" EntitySet="ProjectHistory_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRepositories_Projects" Association="Self.FK_ProjectRepositories_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRepositories_Repositories" Association="Self.FK_ProjectRepositories_Repositories">
+            <End Role="Repositories" EntitySet="Repositories" />
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProManModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="ProjectRepositoryID" Type="Int32" />
+          <Property Name="DeveloperID" Type="Int32" Nullable="false" />
+          <Property Name="FileTypeID" Type="Int32" />
+          <Property Name="FileID" Type="Int32" Nullable="false" />
+          <Property Name="Bytes" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RevisionNumber" Type="Int64" Nullable="false" />
+          <Property Name="DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Change_OFF" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <NavigationProperty Name="Files" Relationship="Self.FK_BOC_Files" FromRole="BOC" ToRole="Files" />
+          <NavigationProperty Name="ProjectRepositories" Relationship="Self.FK_BOC_ProjectRepositories" FromRole="BOC" ToRole="ProjectRepositories" />
+          <NavigationProperty Name="Developers" Relationship="Self.FK_Lines_Developers" FromRole="BOC" ToRole="Developers" />
+          <NavigationProperty Name="FileTypes" Relationship="Self.FK_Lines_FileTypes" FromRole="BOC" ToRole="FileTypes" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Lines_Projects" FromRole="BOC" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Developers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SvnUser" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SvnUser2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TfsUser" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOC" Relationship="Self.FK_Lines_Developers" FromRole="Developers" ToRole="BOC" />
+          <NavigationProperty Name="ProjectHistory_OFF" Relationship="Self.FK_ProjectHistory_Developers" FromRole="Developers" ToRole="ProjectHistory_OFF" />
+          <NavigationProperty Name="Projects" Relationship="Self.ProjectDevelopers_OFF" FromRole="Developers" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filename" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BOC" Relationship="Self.FK_BOC_Files" FromRole="Files" ToRole="BOC" />
+        </EntityType>
+        <EntityType Name="FileTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RemovesRegExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BPL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BOC" Relationship="Self.FK_Lines_FileTypes" FromRole="FileTypes" ToRole="BOC" />
+          <NavigationProperty Name="Projects" Relationship="Self.ProjectFileTypes_OFF" FromRole="FileTypes" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="ProjectHistory_OFF">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectRepositoryID" Type="Int32" Nullable="false" />
+          <Property Name="DeveloperID" Type="Int32" Nullable="false" />
+          <Property Name="Bytes" Type="Int64" Nullable="false" />
+          <Property Name="LastDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastRevision" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Developers" Relationship="Self.FK_ProjectHistory_Developers" FromRole="ProjectHistory_OFF" ToRole="Developers" />
+          <NavigationProperty Name="ProjectRepositories" Relationship="Self.FK_ProjectHistory_ProjectRepositories" FromRole="ProjectHistory_OFF" ToRole="ProjectRepositories" />
+        </EntityType>
+        <EntityType Name="ProjectRepositories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="RepositoryID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BasePath_OFF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastRevision_OFF" Type="Int64" Nullable="false" />
+          <Property Name="ExcludeRegExp_OFF" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CocomoMode" Type="Byte" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BOC" Relationship="Self.FK_BOC_ProjectRepositories" FromRole="ProjectRepositories" ToRole="BOC" />
+          <NavigationProperty Name="ProjectHistory_OFF" Relationship="Self.FK_ProjectHistory_ProjectRepositories" FromRole="ProjectRepositories" ToRole="ProjectHistory_OFF" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_ProjectRepositories_Projects" FromRole="ProjectRepositories" ToRole="Projects" />
+          <NavigationProperty Name="Repositories" Relationship="Self.FK_ProjectRepositories_Repositories" FromRole="ProjectRepositories" ToRole="Repositories" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RepositoryID_OFF" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExcludeRegExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BOC" Relationship="Self.FK_Lines_Projects" FromRole="Projects" ToRole="BOC" />
+          <NavigationProperty Name="ProjectRepositories" Relationship="Self.FK_ProjectRepositories_Projects" FromRole="Projects" ToRole="ProjectRepositories" />
+          <NavigationProperty Name="Developers" Relationship="Self.ProjectDevelopers_OFF" FromRole="Projects" ToRole="Developers" />
+          <NavigationProperty Name="FileTypes" Relationship="Self.ProjectFileTypes_OFF" FromRole="Projects" ToRole="FileTypes" />
+        </EntityType>
+        <EntityType Name="Repositories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BaseUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RootUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RootPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SourceUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastRevision" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ProjectRepositories" Relationship="Self.FK_ProjectRepositories_Repositories" FromRole="Repositories" ToRole="ProjectRepositories" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserLevel" Type="Byte" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BOC_Files">
+          <End Role="Files" Type="Self.Files" Multiplicity="1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="FileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOC_ProjectRepositories">
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="0..1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectRepositories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="ProjectRepositoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lines_Developers">
+          <End Role="Developers" Type="Self.Developers" Multiplicity="1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lines_FileTypes">
+          <End Role="FileTypes" Type="Self.FileTypes" Multiplicity="0..1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lines_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="BOC" Type="Self.BOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOC">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectHistory_Developers">
+          <End Role="Developers" Type="Self.Developers" Multiplicity="1" />
+          <End Role="ProjectHistory_OFF" Type="Self.ProjectHistory_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectHistory_OFF">
+              <PropertyRef Name="DeveloperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectHistory_ProjectRepositories">
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="1" />
+          <End Role="ProjectHistory_OFF" Type="Self.ProjectHistory_OFF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectRepositories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectHistory_OFF">
+              <PropertyRef Name="ProjectRepositoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRepositories_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectRepositories">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRepositories_Repositories">
+          <End Role="Repositories" Type="Self.Repositories" Multiplicity="0..1" />
+          <End Role="ProjectRepositories" Type="Self.ProjectRepositories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repositories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectRepositories">
+              <PropertyRef Name="RepositoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectDevelopers_OFF">
+          <End Role="Developers" Type="Self.Developers" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+        </Association>
+        <Association Name="ProjectFileTypes_OFF">
+          <End Role="FileTypes" Type="Self.FileTypes" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ProManEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOC" EntityType="Self.BOC" />
+          <EntitySet Name="Developers" EntityType="Self.Developers" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" />
+          <EntitySet Name="Files" EntityType="Self.Files" />
+          <EntitySet Name="FileTypes" EntityType="Self.FileTypes" />
+          <EntitySet Name="ProjectHistory_OFF" EntityType="Self.ProjectHistory_OFF" />
+          <EntitySet Name="ProjectRepositories" EntityType="Self.ProjectRepositories" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" />
+          <EntitySet Name="Repositories" EntityType="Self.Repositories" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_BOC_Files" Association="Self.FK_BOC_Files">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOC_ProjectRepositories" Association="Self.FK_BOC_ProjectRepositories">
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lines_Developers" Association="Self.FK_Lines_Developers">
+            <End Role="Developers" EntitySet="Developers" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lines_FileTypes" Association="Self.FK_Lines_FileTypes">
+            <End Role="FileTypes" EntitySet="FileTypes" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lines_Projects" Association="Self.FK_Lines_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="BOC" EntitySet="BOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectHistory_Developers" Association="Self.FK_ProjectHistory_Developers">
+            <End Role="Developers" EntitySet="Developers" />
+            <End Role="ProjectHistory_OFF" EntitySet="ProjectHistory_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectHistory_ProjectRepositories" Association="Self.FK_ProjectHistory_ProjectRepositories">
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+            <End Role="ProjectHistory_OFF" EntitySet="ProjectHistory_OFF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRepositories_Projects" Association="Self.FK_ProjectRepositories_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRepositories_Repositories" Association="Self.FK_ProjectRepositories_Repositories">
+            <End Role="Repositories" EntitySet="Repositories" />
+            <End Role="ProjectRepositories" EntitySet="ProjectRepositories" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectDevelopers_OFF" Association="Self.ProjectDevelopers_OFF">
+            <End Role="Developers" EntitySet="Developers" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectFileTypes_OFF" Association="Self.ProjectFileTypes_OFF">
+            <End Role="FileTypes" EntitySet="FileTypes" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProManModelStoreContainer" CdmEntityContainer="ProManEntities">
+          <EntitySetMapping Name="BOC">
+            <EntityTypeMapping TypeName="ProManModel.BOC">
+              <MappingFragment StoreEntitySet="BOC">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectRepositoryID" ColumnName="ProjectRepositoryID" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+                <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="Bytes" ColumnName="Bytes" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+                <ScalarProperty Name="DT" ColumnName="DT" />
+                <ScalarProperty Name="Change_OFF" ColumnName="Change_OFF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Developers">
+            <EntityTypeMapping TypeName="ProManModel.Developers">
+              <MappingFragment StoreEntitySet="Developers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SvnUser" ColumnName="SvnUser" />
+                <ScalarProperty Name="SvnUser2" ColumnName="SvnUser2" />
+                <ScalarProperty Name="TfsUser" ColumnName="TfsUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLog">
+            <EntityTypeMapping TypeName="ProManModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FileURL" ColumnName="FileURL" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="ProManModel.Files">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileTypes">
+            <EntityTypeMapping TypeName="ProManModel.FileTypes">
+              <MappingFragment StoreEntitySet="FileTypes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RemovesRegExp" ColumnName="RemovesRegExp" />
+                <ScalarProperty Name="BPL" ColumnName="BPL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectHistory_OFF">
+            <EntityTypeMapping TypeName="ProManModel.ProjectHistory_OFF">
+              <MappingFragment StoreEntitySet="ProjectHistory_OFF">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectRepositoryID" ColumnName="ProjectRepositoryID" />
+                <ScalarProperty Name="DeveloperID" ColumnName="DeveloperID" />
+                <ScalarProperty Name="Bytes" ColumnName="Bytes" />
+                <ScalarProperty Name="LastDT" ColumnName="LastDT" />
+                <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectRepositories">
+            <EntityTypeMapping TypeName="ProManModel.ProjectRepositories">
+              <MappingFragment StoreEntitySet="ProjectRepositories">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="RepositoryID" ColumnName="RepositoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BasePath_OFF" ColumnName="BasePath_OFF" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="LastRevision_OFF" ColumnName="LastRevision_OFF" />
+                <ScalarProperty Name="ExcludeRegExp_OFF" ColumnName="ExcludeRegExp_OFF" />
+                <ScalarProperty Name="CocomoMode" ColumnName="CocomoMode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ProManModel.Projects">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RepositoryID_OFF" ColumnName="RepositoryID_OFF" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="ExcludeRegExp" ColumnName="ExcludeRegExp" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repositories">
+            <EntityTypeMapping TypeName="ProManModel.Repositories">
+              <MappingFragment StoreEntitySet="Repositories">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BaseUrl" ColumnName="BaseUrl" />
+                <ScalarProperty Name="RootUsername" ColumnName="RootUsername" />
+                <ScalarProperty Name="RootPassword" ColumnName="RootPassword" />
+                <ScalarProperty Name="SourceUrl" ColumnName="SourceUrl" />
+                <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProManModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ProManModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProjectDevelopers_OFF" TypeName="ProManModel.ProjectDevelopers_OFF" StoreEntitySet="ProjectDevelopers_OFF">
+            <EndProperty Name="Developers">
+              <ScalarProperty Name="ID" ColumnName="DeveloperID" />
+            </EndProperty>
+            <EndProperty Name="Projects">
+              <ScalarProperty Name="ID" ColumnName="ProjectID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProjectFileTypes_OFF" TypeName="ProManModel.ProjectFileTypes_OFF" StoreEntitySet="ProjectFileTypes_OFF">
+            <EndProperty Name="FileTypes">
+              <ScalarProperty Name="ID" ColumnName="FileTypeID" />
+            </EndProperty>
+            <EndProperty Name="Projects">
+              <ScalarProperty Name="ID" ColumnName="ProjectID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

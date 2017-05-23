@@ -1,0 +1,75 @@
+﻿@using ProManClient.ViewModels
+
+@{
+    string action = (ViewData["action"]).ToString();
+    string controller = (ViewData["controller"]).ToString();
+}
+
+
+<div class="box slidebar">
+    <div class="box-header">
+        <h3 class="box-title">Developers</h3>
+    </div>
+    <div class="box-body table-responsive no-padding">
+        @(Html.Kendo().Chart<PieChartViewModel>()
+            .Name( "DevelopersChart" )
+            .Theme( "Flat" )
+            .Legend( legend => legend
+                       .Position( ChartLegendPosition.Top ).Visible( false )
+            )
+            .DataSource( ds => {
+                ds.Read( read => read.Action( action + "Pie", controller ) );
+                // ds.Events( e => e.RequestStart( "loaderActivate('conflictNotificationsChart')" ) );
+            } )
+            .Series( series => {
+                series.Pie( model => model.TotalDevTime, model => model.Name )
+                .Labels( labels => labels
+                    .Visible( true )
+                    .Template( "#=kendo.toString(dataItem.Name, '0.00')#" ).Visible( true )
+                );
+            } )
+            .SeriesColors( "#5DA5DA", "#FAA43A", "#60BD68", "#F15854" )
+            .Tooltip( tooltip => tooltip.Template( "#=kendo.toString(dataItem.TotalDevTime, '0.00')# Μ (${category})" ).Visible( true ) )
+                //.Events( e => e.DataBound( "conflictNotificationsChart_ondatabound" ) )
+        )
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th align='left'>S/N</th>
+                    <th align='left'>Developer</th>
+                    <th align='right'>Size</th>
+                    <th align='right'>Time</th>
+                </tr>
+            </thead>
+            @(Html.Kendo().ListView<ListViewModel>()
+                .Name( "DevelopersList" )
+                .TagName( "tbody" )
+                .ClientTemplateId( "template_DevelopersList" )
+                .DataSource( dataSource => {
+                    dataSource.Read( read => read.Action( action, controller ) );
+                    //dataSource.Events( e => e.RequestStart( "loaderActivate('debtors')" ) );
+                })//.Events( e => e.DataBing( "debtorsList_ondatabound" ) )
+            )
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<script type="text/x-kendo-tmpl" id="template_DevelopersList">
+    @{var path = (ProManClient.Helpers.GlobalVariables.CurrentRouteUrl + "Developers/Index").ToString();}
+    <tr>
+        <td>#: OrderNumber #</td>
+        #if (Allowed === true){#
+        <td><a href='@path/#= ID #'>#: Name #</a></td>
+        #}else {#
+        <td><span class="disabled">Hidden name</span></td>
+        #}#
+        <td align='right'>#: kendo.toString(TotalBytes, '0.00')# KB</td>
+        <td align='right'>#: kendo.toString(TotalDevTime, '0.00')# Μ</td>
+    </tr>
+</script>
+
+
+<script type="text/javascript">
+    RegisterNewWidget("DevelopersList", "kendoListView");
+    RegisterNewWidget("DevelopersChart", "kendoChart");
+</script>

@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Project">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="ID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="BaseRepositoryPath"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RepositoryPath"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Name"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Descr"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastRevision"
+        PropertyType=":Int64">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ExcludeRegExp"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="BOCs"
+        Association="FK_Lines_Projects"
+        FromEnd="Projects"
+        ToEnd="BOC" />
+      <NavigationProperty
+        Name="ProjectDevelopers"
+        Association="FK_ProjectDevelopers_Projects"
+        FromEnd="Projects"
+        ToEnd="ProjectDevelopers" />
+      <NavigationProperty
+        Name="ProjectFileTypes"
+        Association="FK_ProjectFileTypes_Projects"
+        FromEnd="Projects"
+        ToEnd="ProjectFileTypes" />
+      <NavigationProperty
+        Name="ProjectHistories"
+        Association="FK_ProjectHistory_Projects"
+        FromEnd="Projects"
+        ToEnd="ProjectHistory" />
+      <NavigationProperty
+        Name="Repository"
+        Association="FK_Projects_Repositories"
+        FromEnd="Projects"
+        ToEnd="Repositories" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Lines_Projects">
+    <AssociationEnd
+      Name="Projects"
+      Multiplicity="One"
+      EntityType="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="BOC"
+      Multiplicity="Many"
+      EntityType="BOC" />
+  </Association>
+  <Association
+    Name="FK_ProjectDevelopers_Projects">
+    <AssociationEnd
+      Name="Projects"
+      Multiplicity="One"
+      EntityType="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ProjectDevelopers"
+      Multiplicity="Many"
+      EntityType="ProjectDeveloper" />
+  </Association>
+  <Association
+    Name="FK_ProjectFileTypes_Projects">
+    <AssociationEnd
+      Name="Projects"
+      Multiplicity="One"
+      EntityType="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ProjectFileTypes"
+      Multiplicity="Many"
+      EntityType="ProjectFileType" />
+  </Association>
+  <Association
+    Name="FK_ProjectHistory_Projects">
+    <AssociationEnd
+      Name="Projects"
+      Multiplicity="One"
+      EntityType="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ProjectHistory"
+      Multiplicity="Many"
+      EntityType="ProjectHistory" />
+  </Association>
+  <EntityContainer
+    Name="ProManData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Projects"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Project" />
+    <AssociationSet
+      Name="FK_Lines_Projects"
+      Association="FK_Lines_Projects">
+      <AssociationSetEnd
+        Name="Projects"
+        EntitySet="Projects" />
+      <AssociationSetEnd
+        Name="BOC"
+        EntitySet="BOCs" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_ProjectDevelopers_Projects"
+      Association="FK_ProjectDevelopers_Projects">
+      <AssociationSetEnd
+        Name="Projects"
+        EntitySet="Projects" />
+      <AssociationSetEnd
+        Name="ProjectDevelopers"
+        EntitySet="ProjectDevelopers" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_ProjectFileTypes_Projects"
+      Association="FK_ProjectFileTypes_Projects">
+      <AssociationSetEnd
+        Name="Projects"
+        EntitySet="Projects" />
+      <AssociationSetEnd
+        Name="ProjectFileTypes"
+        EntitySet="ProjectFileTypes" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_ProjectHistory_Projects"
+      Association="FK_ProjectHistory_Projects">
+      <AssociationSetEnd
+        Name="Projects"
+        EntitySet="Projects" />
+      <AssociationSetEnd
+        Name="ProjectHistory"
+        EntitySet="ProjectHistories" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Projects_Single"
+      ReturnType="Project">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Projects" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Projects_SingleOrDefault"
+      ReturnType="Project">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Projects" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="ProManDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Projects">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Projects" />
+        <SsdlProperty
+          Name="ID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Project/Properties[ID]" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="BaseRepositoryPath"
+          Nullable="False"
+          Type="varchar"
+          Property="Project/Properties[BaseRepositoryPath]" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="RepositoryPath"
+          Nullable="False"
+          Type="varchar"
+          Property="Project/Properties[RepositoryPath]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Name"
+          Nullable="False"
+          Type="varchar"
+          Property="Project/Properties[Name]" />
+        <SsdlProperty
+          Name="Descr"
+          Nullable="False"
+          Type="varchar(max)"
+          Property="Project/Properties[Descr]" />
+        <SsdlProperty
+          Name="LastRevision"
+          Nullable="False"
+          Type="bigint"
+          Property="Project/Properties[LastRevision]" />
+        <SsdlProperty
+          Name="ExcludeRegExp"
+          Nullable="True"
+          Type="varchar(max)"
+          Property="Project/Properties[ExcludeRegExp]" />
+        <SsdlForeignKeyProperty
+          Name="RepositoryID"
+          Nullable="False"
+          Type="int"
+          PropertyName="RepositoryID" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Lines_Projects">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Lines_Projects" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_Lines_Projects]/Members[Projects]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_Lines_Projects]/Members[BOC]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ProjectID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ProjectDevelopers_Projects">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ProjectDevelopers_Projects" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectDevelopers_Projects]/Members[Projects]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectDevelopers_Projects]/Members[ProjectDevelopers]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ProjectID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ProjectFileTypes_Projects">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ProjectFileTypes_Projects" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectFileTypes_Projects]/Members[Projects]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectFileTypes_Projects]/Members[ProjectFileTypes]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ProjectID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ProjectHistory_Projects">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ProjectHistory_Projects" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectHistory_Projects]/Members[Projects]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectHistory_Projects]/Members[ProjectHistory]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ProjectID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

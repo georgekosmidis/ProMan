@@ -1,0 +1,149 @@
+﻿@using ProManClient.ViewModels;
+@using ProManClient.Helpers;
+
+@{
+    string action = (ViewData["action"]).ToString();
+    string controller = (ViewData["controller"]).ToString();
+    string placeholder = ViewBag.Controller == "Developers" ? "Project" : "Developers";
+}
+
+<div class="box slidebar" id="commitsList">
+    <div class="box-header">
+        <h3 class="box-title">Commits</h3>
+        <div class="pull-right">
+            @(Html.Kendo().DropDownList()
+                  .Name( "searchDropDownList" )
+                  .DataTextField( "Title" )
+                  .DataValueField( "ID" )
+                  .OptionLabel( Helper.GetResStr( "lblSelectA" + placeholder, "Site" ) )
+                  .Events( e => e.Select( "searchBox_onChange" ) )
+                  .DataSource( source => {
+                      source.Read( read => {
+                          read.Action( "GetSearchResults", controller );
+                      } );
+                  } )
+            )
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td align='center'><strong>Commits</strong></td>
+                    <td align='center'><strong>Total Files</strong></td>
+                    <td align='center'><strong>Date</strong></td>
+                </tr>
+            </thead>
+            @(Html.Kendo().ListView<CommitsViewModel>()
+                .Name( "CommitsList" )
+                .TagName( "tbody" )
+                .ClientTemplateId( "template_CommitsList" )
+                .DataSource( dataSource => {
+                    dataSource.Read( read => read.Action( action, controller ).Data( "DataforCommitsList" ) );
+                    //dataSource.Events( e => e.RequestStart( "loaderActivate('debtors')" ) );
+                } ).Events( e => e.DataBound( "commitsList_onDataBount" ) )
+            )
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<script type="text/x-kendo-tmpl" id="template_CommitsList">
+    <tr class="tableRow">
+        <td align='center'>#: Commits #</td>
+        <td align='center'>#: Files #</td>
+        <td align='center' class="date" data-date="#:kendo.toString(DT, 'M/d/yyyy') #">#: kendo.toString(kendo.parseDate(DT), 'd MMM yyyy') #</td>
+    </tr>
+</script>
+
+<script type="text/javascript">
+    RegisterNewWidget("CommitsList", "kendoListView");
+    RegisterNewWidget("searchDropDownList", "kendoDropDownList");
+
+    var CommitsList_date = "";
+    function commitsList_onDataBount() {
+        $("#CommitsList .tableRow").click(function (e) {
+            CommitsList_date = $(this).find(".date").attr("data-date");
+            $("#filesGrid").data("kendoGrid").dataSource.read();
+            $("#wndData").data("kendoWindow").center().open();
+        });
+    }
+    function CommitsList_SetData() {
+        return { date: CommitsList_date };
+    }
+    $(document).ready(function () {
+        var window = $("#wndData");
+        if (!window.data("kendoWindow")) {
+            window.kendoWindow({
+                title: '@ProManClient.Helpers.Helper.GetResStr("lblCommitedFiles", "Site")',
+                visible: false,
+                modal: true,
+                actions: [
+                    "Close"
+                ],
+                close: CommitsList_onClose,
+            });
+        }
+    });
+    function CommitsList_onClose(e) {
+        CommitsList_date = '11/21/1990';
+        $("#filesGrid").data("kendoGrid").dataSource.page(1);
+        $("#filesGrid").data("kendoGrid").dataSource.read();
+    }
+
+    function searchBox_onChange(e) {
+        var dataItem = this.dataItem(e.item.index());
+        if (dataItem.ID === "") {
+            e.preventDefault();
+            return false;
+        } else {
+            searchedID = dataItem.ID;
+            $("#CommitsList").data("kendoListView").dataSource.read();
+        }
+
+    }
+
+    var searchedID = -1;
+    function DataforCommitsList() {
+        return {
+            searchedID: searchedID,
+        }
+    }
+
+</script>
+
+
+<div id="wndData">
+    @(Html.Kendo().Grid<FilesViewModel>()
+      .Name( "filesGrid" )
+      .Columns( columns => {
+          if ( controller == "Developers" ) {
+              columns.Bound( c => c.ProjectName ).ClientTemplate( "<a href='" + Url.Action( "Index", "Project", new { id = "#=ProjectID#" } ) + "'>#=ProjectName#</a>" );
+          }
+          else if ( controller == "Project" ) {
+              columns.Bound( c => c.DeveloperName ).ClientTemplate(
+                 "# if(Allowed == true){#" +
+                 "<a href='" + @Url.Action( "Index", "Developers", new { id = "#=DeveloperID#" } ) + "'>#=DeveloperName#</a>" +
+                 "#} else {#" +
+                 "#=DeveloperName#" + "#}#" );
+          }
+          columns.Bound( c => c.FileName ).ClientTemplate(
+                 "# if(Allowed == true){#" +
+                 "<a href='#=Url#' target='_blank'>#=FileName#</a>" +
+                 "#} else {#" +
+                 "#=FileName#" + "#}#" );
+          columns.Bound( c => c.Type );
+          columns.Bound( c => c.Bytes );
+      } )
+    .Groupable()
+    .Sortable( s => s.AllowUnsort( true ) )
+    .Filterable( ftb => ftb.Mode( GridFilterMode.Menu ) )
+    .Pageable( pageable => pageable
+        .Refresh( true )
+        .PageSizes( true )
+        .ButtonCount( 5 ) )
+    .DataSource( dataSource => dataSource
+    .Ajax()
+    .Read( read => read.Action( "Files_Read", controller )
+    .Data( "CommitsList_SetData" ) )
+))
+</div>

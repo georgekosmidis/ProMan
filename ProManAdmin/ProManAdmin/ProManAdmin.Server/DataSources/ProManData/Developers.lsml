@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Developer">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="ID"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Username"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Name"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="50" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="SvnUser"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TfsUser"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <AnsiConstraint />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="BOCs"
+        Association="FK_Lines_Developers"
+        FromEnd="Developers"
+        ToEnd="BOC" />
+      <NavigationProperty
+        Name="ProjectDevelopers"
+        Association="FK_ProjectDevelopers_Developers"
+        FromEnd="Developers"
+        ToEnd="ProjectDevelopers" />
+      <NavigationProperty
+        Name="ProjectHistories"
+        Association="FK_ProjectHistory_Developers"
+        FromEnd="Developers"
+        ToEnd="ProjectHistory" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Lines_Developers">
+    <AssociationEnd
+      Name="Developers"
+      Multiplicity="One"
+      EntityType="Developer">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="BOC"
+      Multiplicity="Many"
+      EntityType="BOC" />
+  </Association>
+  <Association
+    Name="FK_ProjectDevelopers_Developers">
+    <AssociationEnd
+      Name="Developers"
+      Multiplicity="One"
+      EntityType="Developer">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ProjectDevelopers"
+      Multiplicity="Many"
+      EntityType="ProjectDeveloper" />
+  </Association>
+  <Association
+    Name="FK_ProjectHistory_Developers">
+    <AssociationEnd
+      Name="Developers"
+      Multiplicity="One"
+      EntityType="Developer">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="ProjectHistory"
+      Multiplicity="Many"
+      EntityType="ProjectHistory" />
+  </Association>
+  <EntityContainer
+    Name="ProManData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Developers"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Developer" />
+    <AssociationSet
+      Name="FK_Lines_Developers"
+      Association="FK_Lines_Developers">
+      <AssociationSetEnd
+        Name="Developers"
+        EntitySet="Developers" />
+      <AssociationSetEnd
+        Name="BOC"
+        EntitySet="BOCs" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_ProjectDevelopers_Developers"
+      Association="FK_ProjectDevelopers_Developers">
+      <AssociationSetEnd
+        Name="Developers"
+        EntitySet="Developers" />
+      <AssociationSetEnd
+        Name="ProjectDevelopers"
+        EntitySet="ProjectDevelopers" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_ProjectHistory_Developers"
+      Association="FK_ProjectHistory_Developers">
+      <AssociationSetEnd
+        Name="Developers"
+        EntitySet="Developers" />
+      <AssociationSetEnd
+        Name="ProjectHistory"
+        EntitySet="ProjectHistories" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Developers_Single"
+      ReturnType="Developer">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Developers" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Developers_SingleOrDefault"
+      ReturnType="Developer">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Developers" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ID"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="ProManDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Developers">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Developers" />
+        <SsdlProperty
+          Name="ID"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Developer/Properties[ID]" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="Username"
+          Nullable="False"
+          Type="varchar"
+          Property="Developer/Properties[Username]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Name"
+          Nullable="False"
+          Type="varchar"
+          Property="Developer/Properties[Name]" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="SvnUser"
+          Nullable="False"
+          Type="varchar"
+          Property="Developer/Properties[SvnUser]" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="TfsUser"
+          Nullable="False"
+          Type="varchar"
+          Property="Developer/Properties[TfsUser]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Lines_Developers">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Lines_Developers" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_Lines_Developers]/Members[Developers]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_Lines_Developers]/Members[BOC]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DeveloperID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ProjectDevelopers_Developers">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ProjectDevelopers_Developers" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectDevelopers_Developers]/Members[Developers]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectDevelopers_Developers]/Members[ProjectDevelopers]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DeveloperID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_ProjectHistory_Developers">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_ProjectHistory_Developers" />
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectHistory_Developers]/Members[Developers]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ProManData/Members[FK_ProjectHistory_Developers]/Members[ProjectHistory]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DeveloperID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

@@ -1,0 +1,66 @@
+﻿@using ProManClient.ViewModels
+
+@{
+    string action = (ViewData["action"]).ToString();
+    string controller = (ViewData["controller"]).ToString();
+}
+
+
+<div class="box slidebar">
+    <div class="box-header">
+        <h3 class="box-title">Change Type</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @(Html.Kendo().Chart<ModificationViewModel>()
+            .Name( "ModificationChart" )
+            .Theme( "Flat" )
+            .Legend( legend => legend
+               .Position( ChartLegendPosition.Top ).Visible( false )
+            )
+            .DataSource( ds => {
+                ds.Read( read => read.Action( action + "Pie", controller ) );
+                // ds.Events( e => e.RequestStart( "loaderActivate('conflictNotificationsChart')" ) );
+            } )
+            .Series( series => {
+                series.Pie( model => model.TotalBytes, model => model.TypeTitle )
+                .Labels( labels => labels
+                    .Visible( true )
+                    .Template( "#=dataItem.TypeTitle#" ).Visible( true )
+                );
+            } )
+            .SeriesColors( "#0073b7", "#5DA5DA", "#FAA43A", "#60BD68", "#F17CB0", "#B2912F", "#B276B2", "#DECF3F", "#F15854" )
+            .Tooltip( tooltip => tooltip.Template( "#=kendo.toString(dataItem.TotalBytes, '0.00')# KB  ${category}" ).Visible( true )
+            )
+                //.Events( e => e.DataBound( "conflictNotificationsChart_ondatabound" ) )
+        )
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th align='left'>Type</th>
+                    <th align='right'>Size</th>
+                </tr>
+            </thead>
+            @(Html.Kendo().ListView<ModificationViewModel>()
+                .Name( "ModificationList" )
+                .TagName( "tbody" )
+                .ClientTemplateId( "template_TypesList" )
+                .DataSource( dataSource => {
+                    dataSource.Read( read => read.Action( action, controller ) );
+                    //dataSource.Events( e => e.RequestStart( "loaderActivate('debtors')" ) );
+                } )//.Events( e => e.DataBound( "debtorsList_ondatabound" ) )
+            )
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<script type="text/x-kendo-tmpl" id="template_TypesList">
+    <tr>
+        <td>#: TypeTitle #</td>
+        <td align='right'>#: kendo.toString(TotalBytes, '0.00') # KB</td>
+    </tr>
+</script>
+
+<script type="text/javascript">
+    RegisterNewWidget("ModificationList", "kendoListView");
+    RegisterNewWidget("ModificationChart", "kendoChart");
+</script>

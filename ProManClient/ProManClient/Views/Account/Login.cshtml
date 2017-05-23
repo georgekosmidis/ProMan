@@ -1,0 +1,70 @@
+﻿@using ProManClient.ViewModels;
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+}
+
+@model LoginModel
+
+<div class="login-container">
+    <div class="login-header login-caret">
+        <div class="login-content">
+            <a href="#" class="logo">ProMan</a>
+            <p class="description"></p>
+        </div>
+    </div>
+    <div class="login-form">
+        <div class="login-content">
+
+            @if ( !Html.ViewData.ModelState.IsValid ) {
+                <div class="form-login-error" style="display: block; height: auto;">
+                    <h3>Invalid login</h3>
+                    @Html.ValidationSummary( true )
+                </div>
+            }
+
+            @using ( Html.BeginForm( "Login", "Account", FormMethod.Post ) ) {
+
+                @Html.Hidden( "returnUrl", Request.QueryString["ReturnUrl"] )
+                <div class="form-group">
+
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </div>
+                        @Html.EditorFor( model => model.UserName, new { HtmlAttributes = new { name = "username", id = "username", @class = "form-control", placeholder = "Username" } } )
+                        <label for="username" class="error">@Html.ValidationMessageFor( model => model.UserName )</label>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        @Html.EditorFor( model => model.Password, new { HtmlAttributes = new { name = "password", id = "password", @class = "form-control", placeholder = "Password" } } )
+                        <label for="username" class="error">@Html.ValidationMessageFor( model => model.Password )</label>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block btn-login">
+                        Sign me in <i class="fa fa-sign-out pull-right"></i>
+                    </button>
+                </div>
+            }
+            <div class="login-bottom-links">
+                <a href="http://www.epsilonnet.gr/" target="_blank">Epsilon Net</a> - All Rights Reserved
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("form").kendoValidator().data("kendoValidator");
+    });
+</script>

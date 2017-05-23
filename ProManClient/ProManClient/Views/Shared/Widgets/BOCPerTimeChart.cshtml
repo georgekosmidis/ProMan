@@ -1,0 +1,37 @@
+﻿@using ProManClient.ViewModels;
+
+@model IEnumerable<ProjectsViewModel>
+
+@{
+    string action = (ViewData["action"]).ToString();
+    string controller = (ViewData["controller"]).ToString();
+}
+
+@(Html.Kendo().Chart( Model )
+            .Name( "BOCPerTime" )
+            .Legend( legend => legend
+            .Position( ChartLegendPosition.Top ).Visible( false )
+            )
+            .DataSource(
+                    ds => ds.Read( read => read.Action( action, controller ) ) )
+            .Series( series => {
+                series.Area( model => model.TotalDevTime, model => model.CommitDate ).Name( "TotalBytes" ).Color( "#91CEDD" );
+            } )
+            .CategoryAxis( axis => axis
+                .Date()
+                .Labels( labels => labels.Format( "d MMM" ) )
+                .Line( line => line.Visible( true ) )
+                .MajorGridLines( lines => lines.Visible( false ) )
+            )
+            .ValueAxis( axis => axis.Numeric()
+                .Labels( labels => labels.Format( "{0:N0}" ) )
+            )
+            .Tooltip( tooltip => tooltip
+                .Visible( true )
+                .Template( "#= kendo.toString(kendo.parseDate(category), 'd MMM')# - #=kendo.toString(value, '0.00')# Μ" )
+            )
+    )
+
+<script type="text/javascript">
+    RegisterNewWidget("BOCPerTime", "kendoChart");
+</script>
