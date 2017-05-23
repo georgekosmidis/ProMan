@@ -37,10 +37,12 @@ namespace ProManService.Engines
                 ICredentials iCred = new NetworkCredential(tfsRepository.RootUsername, tfsRepository.RootPassword, "*");
                 connect.GetCredentials(new Uri(tfsRepository.BaseUrl), iCred);
 
-                var configurationServer = TfsConfigurationServerFactory.GetConfigurationServer(new Uri(tfsRepository.BaseUrl), connect);
-                configurationServer.EnsureAuthenticated();
+                //var tfsCreds = new TfsClientCredentials(new WindowsCredential(), true);
+                //var configurationServer = TfsConfigurationServerFactory.GetConfigurationServer(new Uri(tfsRepository.BaseUrl), connect);
+                //configurationServer.EnsureAuthenticated();
+                //var projects = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(tfsRepository.BaseUrl), tfsCreds);
 
-                var projects = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(tfsRepository.BaseUrl));
+                var projects = new TfsTeamProjectCollection(new Uri(tfsRepository.BaseUrl), iCred);
                 var vcs = projects.GetService<VersionControlServer>();
 
                 var tmpFile = System.IO.Path.GetTempPath() + Path.DirectorySeparatorChar + "ProMan.tmp";

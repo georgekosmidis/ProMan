@@ -19,7 +19,7 @@ namespace ProManService.Data
         {
             using (var proManEntities = new ProManEntities())
             {
-                return proManEntities.Developers.ToList();
+                return proManEntities.Developers.AsNoTracking().ToList();
             }
         }
 
@@ -27,7 +27,7 @@ namespace ProManService.Data
         {
             using (var proManEntities = new ProManEntities())
             {
-                return proManEntities.FileTypes.ToList();
+                return proManEntities.FileTypes.AsNoTracking().ToList();
             }
         }
 
@@ -35,7 +35,7 @@ namespace ProManService.Data
         {
             using (var proManEntities = new ProManEntities())
             {
-                return proManEntities.ProjectRepositories.ToList();
+                return proManEntities.ProjectRepositories.AsNoTracking().Include( x => x.Project).ToList();
             }
         }
 
@@ -43,7 +43,7 @@ namespace ProManService.Data
         {
             using (var proManEntities = new ProManEntities())
             {
-                return proManEntities.Files.Where(fl => fl.Filename == fileUrl).FirstOrDefault();
+                return proManEntities.Files.AsNoTracking().Where(fl => fl.Filename == fileUrl).FirstOrDefault();
             }
         }
 
@@ -51,7 +51,7 @@ namespace ProManService.Data
         {
             using (var proManEntities = new ProManEntities())
             {
-                return proManEntities.Repositories.Where(repository => repository.Type == repositoryType).ToList<Repository>();
+                return proManEntities.Repositories.AsNoTracking().Where(repository => repository.Type == repositoryType).ToList<Repository>();
             }
         }
 
