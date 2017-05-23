@@ -262,4 +262,4 @@ ModelManifest.xml
 
 
 # Configs
-/ProManService/ProManService/
+**/*.config
