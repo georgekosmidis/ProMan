@@ -74,6 +74,14 @@
     <Reference Include="Microsoft.TeamFoundation.VersionControl.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="microsoft.visualstudio.services.client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\vs2013assemblies\microsoft.visualstudio.services.client.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.visualstudio.services.common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\vs2013assemblies\microsoft.visualstudio.services.common.dll</HintPath>
+    </Reference>
     <Reference Include="SharpSvn, Version=1.9005.3944.228, Culture=neutral, PublicKeyToken=d729672594885a28, processorArchitecture=AMD64">
       <HintPath>..\packages\SharpSvn.1.9-x64.1.9005.3944.228\lib\net40\SharpSvn.dll</HintPath>
     </Reference>
@@ -83,6 +91,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />

@@ -42,7 +42,7 @@ namespace ProManService.Engines
                 //configurationServer.EnsureAuthenticated();
                 //var projects = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(tfsRepository.BaseUrl), tfsCreds);
 
-                var projects = new TfsTeamProjectCollection(new Uri(tfsRepository.BaseUrl), iCred);
+                var projects = new TfsTeamProjectCollection(new Uri(tfsRepository.BaseUrl), connect);
                 var vcs = projects.GetService<VersionControlServer>();
 
                 var tmpFile = System.IO.Path.GetTempPath() + Path.DirectorySeparatorChar + "ProMan.tmp";
