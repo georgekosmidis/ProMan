@@ -24,7 +24,6 @@ namespace ProManService
         public string Type { get; set; }
         public long RevisionNumber { get; set; }
         public System.DateTime DT { get; set; }
-        public decimal Change_OFF { get; set; }
     
         public virtual File File { get; set; }
         public virtual ProjectRepository ProjectRepository { get; set; }

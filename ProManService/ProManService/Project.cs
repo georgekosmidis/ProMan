@@ -18,20 +18,15 @@ namespace ProManService
         {
             this.BOCs = new HashSet<BOC>();
             this.ProjectRepositories = new HashSet<ProjectRepository>();
-            this.Developers = new HashSet<Developer>();
-            this.FileTypes = new HashSet<FileType>();
         }
     
         public int ID { get; set; }
-        public int RepositoryID_OFF { get; set; }
         public string Name { get; set; }
         public string Descr { get; set; }
-        public bool IsActive { get; set; }
         public string ExcludeRegExp { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual ICollection<BOC> BOCs { get; set; }
         public virtual ICollection<ProjectRepository> ProjectRepositories { get; set; }
-        public virtual ICollection<Developer> Developers { get; set; }
-        public virtual ICollection<FileType> FileTypes { get; set; }
     }
 }

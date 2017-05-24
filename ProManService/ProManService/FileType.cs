@@ -17,7 +17,6 @@ namespace ProManService
         public FileType()
         {
             this.BOCs = new HashSet<BOC>();
-            this.Projects = new HashSet<Project>();
         }
     
         public int ID { get; set; }
@@ -27,6 +26,5 @@ namespace ProManService
         public int BPL { get; set; }
     
         public virtual ICollection<BOC> BOCs { get; set; }
-        public virtual ICollection<Project> Projects { get; set; }
     }
 }

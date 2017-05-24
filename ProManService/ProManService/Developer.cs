@@ -17,8 +17,6 @@ namespace ProManService
         public Developer()
         {
             this.BOCs = new HashSet<BOC>();
-            this.ProjectHistory_OFF = new HashSet<ProjectHistory_OFF>();
-            this.Projects = new HashSet<Project>();
         }
     
         public int ID { get; set; }
@@ -29,7 +27,5 @@ namespace ProManService
         public string TfsUser { get; set; }
     
         public virtual ICollection<BOC> BOCs { get; set; }
-        public virtual ICollection<ProjectHistory_OFF> ProjectHistory_OFF { get; set; }
-        public virtual ICollection<Project> Projects { get; set; }
     }
 }

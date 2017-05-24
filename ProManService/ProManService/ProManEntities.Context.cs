@@ -30,11 +30,9 @@ namespace ProManService
         public virtual DbSet<ErrorLog> ErrorLogs { get; set; }
         public virtual DbSet<File> Files { get; set; }
         public virtual DbSet<FileType> FileTypes { get; set; }
-        public virtual DbSet<ProjectHistory_OFF> ProjectHistory_OFF { get; set; }
         public virtual DbSet<ProjectRepository> ProjectRepositories { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Repository> Repositories { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

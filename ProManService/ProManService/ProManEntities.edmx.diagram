@@ -5,28 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="65ef0ef3da9249bf98c7db04e84c1fb9" Name="Diagram1">
-        <EntityTypeShape EntityType="ProManModel.BOC" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.Developer" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.ErrorLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.File" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.FileType" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.ProjectHistory_OFF" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.ProjectRepository" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.Project" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.Repository" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.sysdiagram" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProManModel.User" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <AssociationConnector Association="ProManModel.FK_BOC_Files" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_BOC_ProjectRepositories" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_Lines_Developers" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_Lines_FileTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_Lines_Projects" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_ProjectHistory_Developers" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_ProjectHistory_ProjectRepositories" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_ProjectRepositories_Projects" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.FK_ProjectRepositories_Repositories" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.ProjectDevelopers_OFF" ManuallyRouted="false" />
-        <AssociationConnector Association="ProManModel.ProjectFileTypes_OFF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProManModel.BOC" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="ProManModel.Developer" Width="1.5" PointX="0.75" PointY="13.125" />
+        <EntityTypeShape EntityType="ProManModel.ErrorLog" Width="1.5" PointX="5.75" PointY="2.875" />
+        <EntityTypeShape EntityType="ProManModel.File" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="ProManModel.FileType" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="ProManModel.ProjectRepository" Width="1.5" PointX="6" PointY="5.625" />
+        <EntityTypeShape EntityType="ProManModel.Project" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="ProManModel.Repository" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProManModel.User" Width="1.5" PointX="7.75" PointY="2.875" />
+        <AssociationConnector Association="ProManModel.FK_BOC_Files" />
+        <AssociationConnector Association="ProManModel.FK_BOC_ProjectRepositories" />
+        <AssociationConnector Association="ProManModel.FK_Lines_Developers" />
+        <AssociationConnector Association="ProManModel.FK_Lines_FileTypes" />
+        <AssociationConnector Association="ProManModel.FK_Lines_Projects" />
+        <AssociationConnector Association="ProManModel.FK_ProjectRepositories_Projects" />
+        <AssociationConnector Association="ProManModel.FK_ProjectRepositories_Repositories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

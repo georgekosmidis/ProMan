@@ -97,29 +97,26 @@
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\EfData.cs" />
-    <Compile Include="Engines\EngineBase.cs" />
-    <Compile Include="Factories\EngineFactory.cs" />
-    <Compile Include="Interfaces\IData.cs" />
     <Compile Include="Developer.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Engine.cs" />
-    <Compile Include="Engines\SVN.cs" />
-    <Compile Include="Engines\TFS.cs" />
+    <Compile Include="Engines\EngineBase.cs" />
     <Compile Include="ErrorLog.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Factories\EngineFactory.cs" />
     <Compile Include="File.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="FileType.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IData.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Engines\SVN.cs" />
+    <Compile Include="Engines\TFS.cs" />
     <Compile Include="Libs.cs" />
     <Compile Include="Project.cs">
-      <DependentUpon>ProManEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectHistory_OFF.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ProjectRepository.cs">
@@ -151,9 +148,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>ProManEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Engines\TfsLibs\ConnectByImplementingCredentialsProvider.cs" />
     <Compile Include="User.cs">
       <DependentUpon>ProManEntities.tt</DependentUpon>

@@ -94,8 +94,16 @@ namespace ProManService.Engines
                             using (var ms = new MemoryStream())
                             {
                                 var svnUri = new SvnUriTarget(fileUrl, svnLogEventArg.Revision);
-                                svnClient.Write(svnUri, ms);
-
+                                try
+                                {
+                                    svnClient.Write(svnUri, ms);
+                                }
+                                catch (SvnException ex)
+                                {
+                                    if (ex.GetCause(ex.AprErrorCode).SvnErrorCode == SvnErrorCode.SVN_ERR_FS_NOT_FOUND)
+                                        continue;
+                                    throw;
+                                }
                                 var str = Encoding.Default.GetString(ms.ToArray());
                                 bytesOfCode = GetCodeBytes(str, filetype.RemovesRegExp);
 
