@@ -3,10 +3,8 @@
 
 
 
-###### Chart on main screen
+###### Charts/Pies on main screen
 ![Dashboard Chart](https://raw.githubusercontent.com/georgekosmidis/ProMan/feature/refactor/README/charts_tn.jpg)
-
-###### Pies on main screen
 ![Dashboard Pies](https://raw.githubusercontent.com/georgekosmidis/ProMan/feature/refactor/README/pies_tn.jpg)
 
 ###### Project's screen
