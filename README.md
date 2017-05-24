@@ -4,4 +4,11 @@
 ###### Chart on main screen
 ![Dashboard Chart](https://raw.githubusercontent.com/georgekosmidis/ProMan/feature/refactor/README/charts_tn.jpg)
 
-Chart on main screen
+###### Pies on main screen
+![Dashboard Chart](https://raw.githubusercontent.com/georgekosmidis/ProMan/feature/refactor/README/pies_tn.jpg)
+
+###### Project's screen
+![Dashboard Chart](https://raw.githubusercontent.com/georgekosmidis/ProMan/feature/refactor/README/project_tn.jpg)
+
+###### Developer's screen
+![Dashboard Chart](https://raw.githubusercontent.com/georgekosmidis/ProMan/feature/refactor/README/developers_tn.jpg)
